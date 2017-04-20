@@ -24,7 +24,6 @@ import sv.edu.uesocc.casosacad.pojos.PasoFacadeLocal;
  * Gestion de Casos, Administracion Academica
  *
  */
-
 @Named(value = "mbPaso")
 @ViewScoped
 public class mbPaso implements Serializable {
