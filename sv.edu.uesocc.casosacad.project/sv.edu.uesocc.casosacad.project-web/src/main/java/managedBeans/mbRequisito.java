@@ -209,7 +209,7 @@ public class mbRequisito implements Serializable {
         return selectedRequisito;
     }
 
-    public void setSelectedRequisito(Requisito selectedRequisito) {
+    public void setSelectedRequisito(Requisito selectedRequi) {
         this.selectedRequisito = selectedRequisito;
     }
 

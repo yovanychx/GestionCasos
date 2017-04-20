@@ -206,7 +206,7 @@ public class mbPaso implements Serializable {
         return selectedPaso;
     }
 
-    public void setSelectedPaso(Paso selectedPaso) {
+    public void setSelectedPaso(Paso selectedPas) {
         this.selectedPaso = selectedPaso;
     }
 
