@@ -61,6 +61,31 @@
 
 
                         </f:facet>
+                        <p:fieldset  toggleable="true" widgetVar="fsEdit">
+                        <f:facet name="legend">
+                            <h:outputText value="Panel de Edición"/>
+
+
+                        </f:facet>
+                        <p:commandButton value="CREAR NUEVO" action="PF('fsEdit').toggle()">
+
+                            <p:ajax process="@this" update=":frmEdit :frmEdit:pnlEdit" listener="#{mbPaso.nuevo()}"/>
+
+                        </p:commandButton>
+                        <br/>
+                        <p:messages/>
+                        <p:panelGrid id="pnlEdit" columns="2" rendered="#{mbPaso.showDetail}" styleClass="panelNoBorder">
+                            <p:outputLabel value="Descripción:" for="descripcion" />
+                            <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{mbPaso.selectedPaso.descripcion}" title="Descripcion"/>
+                            <p:outputLabel value="Tiempo:" for="tiempo" />
+                            <p:inputText id="tiempo" value="#{mbPaso.selectedPaso.tiempo}" title="Tiempo"/>
+                            <p:outputLabel value="Tipo Paso:" for="idTipoPaso" />
+                            <p:selectOneMenu id="idTipoPaso" value="#{mbPaso.selectedPaso.idTipoPaso}" effect="fold" converter="omnifaces.SelectItemsConverter">
+                                <f:selectItems  value="#{mbTipoPaso.findAll()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <btn:pnlBtn id="pnlBtn" name="Paso" bean="#{mbPaso}"/>
+                    </p:fieldset>
                         <p:commandButton value="CREAR NUEVO" action="PF('fsEdit').toggle()">
 
                             <p:ajax process="@this" update=":frmEdit :frmEdit:pnlEdit" listener="#{mbPaso.nuevo()}"/>
