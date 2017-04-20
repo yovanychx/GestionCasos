@@ -70,9 +70,9 @@
                         <p:messages/>
                         <p:panelGrid id="pnlEdit" columns="2" rendered="#{mbPaso.showDetail}" styleClass="panelNoBorder">
                             <p:outputLabel value="Descripción:" for="descripcion" />
-                            <p:inputText id="descripcion" value="#{mbPaso.selectedPaso.descripcion}" title="Descripcion"/>
+                            <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{mbPaso.selectedPaso.descripcion}" title="Descripcion"/>
                             <p:outputLabel value="Tiempo:" for="tiempo" />
-                            <p:inputTextarea rows="4" cols="30" id="tiempo" value="#{mbPaso.selectedPaso.tiempo}" title="Tiempo"/>
+                            <p:inputText id="tiempo" value="#{mbPaso.selectedPaso.tiempo}" title="Tiempo"/>
                             <p:outputLabel value="Tipo Paso:" for="idTipoPaso" />
                             <p:selectOneMenu id="idTipoPaso" value="#{mbPaso.selectedPaso.idTipoPaso}" effect="fold" converter="omnifaces.SelectItemsConverter">
                                 <f:selectItems  value="#{mbTipoPaso.findAll()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id}"/>
