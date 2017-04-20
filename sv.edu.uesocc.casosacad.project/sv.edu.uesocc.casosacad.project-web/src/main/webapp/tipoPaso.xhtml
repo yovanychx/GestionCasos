@@ -21,7 +21,7 @@
                                  lazy="true"
                                  var="item"
                                  paginator="true" 
-                                 rows="5" 
+                                 rows="12" 
                                  selectionMode="single"
                                  selection="#{mbTipoPaso.selectedTipoPaso}"
                                  emptyMessage="Aún no se han agregado tipo Pasos."
@@ -29,7 +29,7 @@
                                  widgetVar="dataTable"
                                  >
                         <p:ajax update=":frmEdit" event="rowSelect" listener="#{mbTipoPaso.changeSelected}"/>
-                        
+
                         <p:column filterBy="#{item.idTipoPaso}" headerText="ID" sortBy="#{item.idTipoPaso}">
 
                             <h:outputText value="#{item.idTipoPaso}"/>

@@ -8,8 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
 import org.primefaces.model.LazyDataModel;
@@ -21,12 +19,10 @@ import sv.edu.uesocc.casosacad.pojos.TipoRequisitoFacadeLocal;
 /**
  *
  * @author wxlter97
- * 
+ *
  * Gestion de Casos, Administracion Academica
- * 
+ *
  */
-
-
 @Named(value = "mbTipoRequisito")
 @ViewScoped
 public class mbTipoRequisito implements Serializable {
@@ -43,7 +39,7 @@ public class mbTipoRequisito implements Serializable {
 
     @PostConstruct
     private void init() {
-    selectedTipoRequisito = new TipoRequisito();
+        selectedTipoRequisito = new TipoRequisito();
         try {
             this.setLdm(new LazyDataModel<TipoRequisito>() {
                 @Override
@@ -89,32 +85,32 @@ public class mbTipoRequisito implements Serializable {
                     }
                     salida = null;
                     try {
-                        if (!filters.isEmpty() && (filters.containsKey("idTipoRequisito")||filters.containsKey("nombre")||filters.containsKey("activo")||filters.containsKey("observaciones"))) {
-                            
-                            if(filters.containsKey("idTipoRequisito")){
+                        if (!filters.isEmpty() && (filters.containsKey("idTipoRequisito") || filters.containsKey("nombre") || filters.containsKey("activo") || filters.containsKey("observaciones"))) {
+
+                            if (filters.containsKey("idTipoRequisito")) {
                                 salida = fl.findBy("idTipoRequisito", filters.get("idTipoRequisito").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                            } else if(filters.containsKey("nombre")){
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+                            } else if (filters.containsKey("nombre")) {
                                 salida = fl.findBy("nombre", filters.get("nombre").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                            } else if(filters.containsKey("activo")){
-                               
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+                            } else if (filters.containsKey("activo")) {
+
                                 salida = fl.findBy("activo", filters.get("activo").toString());
-                               
-                                 if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                           
-                            }else if(filters.containsKey("observaciones")){
+
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+
+                            } else if (filters.containsKey("observaciones")) {
                                 salida = fl.findBy("observaciones", filters.get("observaciones").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                           
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+
                             }
                         }
                     } catch (Exception ex) {
@@ -155,32 +151,32 @@ public class mbTipoRequisito implements Serializable {
 
     public void create() {
         if (this.selectedTipoRequisito.getNombre().isEmpty() != true && this.getSelectedTipoRequisito().getObservaciones().isEmpty() != true) {
-        try {
-            this.getFl().create(this.getSelectedTipoRequisito());
-            selectedTipoRequisito= new TipoRequisito();
-            btnAdd = true;
-            btnEdit = false;
-            msg.MsgCreado();
-        } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        }
-        }else{
+            try {
+                this.getFl().create(this.getSelectedTipoRequisito());
+                selectedTipoRequisito = new TipoRequisito();
+                btnAdd = true;
+                btnEdit = false;
+                msg.MsgCreado();
+            } catch (Exception e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+            }
+        } else {
             msg.MsgIncompleto();
         }
-            
+
     }
 
     public void remove() {
         try {
             this.getFl().remove(this.getSelectedTipoRequisito());
-            selectedTipoRequisito= new TipoRequisito();
+            selectedTipoRequisito = new TipoRequisito();
             btnAdd = true;
             btnEdit = false;
             msg.MsgBorrado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
-        
+
     }
 
     public void edit(TipoRequisito t) {
@@ -190,7 +186,7 @@ public class mbTipoRequisito implements Serializable {
     public void edit() {
         try {
             this.getFl().edit(this.getSelectedTipoRequisito());
-            selectedTipoRequisito= new TipoRequisito();
+            selectedTipoRequisito = new TipoRequisito();
             btnAdd = true;
             btnEdit = false;
             msg.MsgModificado();

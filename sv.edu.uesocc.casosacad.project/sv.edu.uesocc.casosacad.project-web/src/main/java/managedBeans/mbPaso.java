@@ -8,8 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
 import org.primefaces.model.LazyDataModel;
@@ -22,11 +20,10 @@ import sv.edu.uesocc.casosacad.pojos.PasoFacadeLocal;
 /**
  *
  * @author wxlter97
- * 
+ *
  * Gestion de Casos, Administracion Academica
- * 
+ *
  */
-
 @Named(value = "mbPaso")
 @ViewScoped
 public class mbPaso implements Serializable {
@@ -43,7 +40,7 @@ public class mbPaso implements Serializable {
 
     @PostConstruct
     private void init() {
-    selectedPaso = new Paso();
+        selectedPaso = new Paso();
         try {
             this.setLdm(new LazyDataModel<Paso>() {
                 @Override
@@ -89,30 +86,29 @@ public class mbPaso implements Serializable {
                     }
                     salida = null;
                     try {
-                        if (!filters.isEmpty() && (filters.containsKey("idPaso")||filters.containsKey("nombre")||filters.containsKey("descripcion")||filters.containsKey("idTipoPaso.idTipoPaso"))) {
-                            
-                            if(filters.containsKey("idPaso")){
+                        if (!filters.isEmpty() && (filters.containsKey("idPaso") || filters.containsKey("nombre") || filters.containsKey("descripcion") || filters.containsKey("idTipoPaso.idTipoPaso"))) {
+
+                            if (filters.containsKey("idPaso")) {
                                 salida = fl.findBy("idPaso", filters.get("idPaso").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                            } else if(filters.containsKey("nombre")){
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+                            } else if (filters.containsKey("nombre")) {
                                 salida = fl.findBy("nombre", filters.get("nombre").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                            } else if(filters.containsKey("descripcion")){
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+                            } else if (filters.containsKey("descripcion")) {
                                 salida = fl.findBy("descripcion", filters.get("descripcion").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                           
-                            }
-                            else if(filters.containsKey("idTipoPaso.idTipoPaso")){
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+
+                            } else if (filters.containsKey("idTipoPaso.idTipoPaso")) {
                                 salida = fl.findByJoined("idTipoPaso", (TipoPaso) filters.get("idTipoPaso.idTipoPaso"));
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
                             }
                         }
                     } catch (Exception ex) {
@@ -159,16 +155,16 @@ public class mbPaso implements Serializable {
 
     public void create() {
         if (this.selectedPaso.getTiempo().isEmpty() != true && this.getSelectedPaso().getDescripcion().isEmpty() != true) {
-        try {
-            this.getFl().create(this.getSelectedPaso());
-            selectedPaso = new Paso();
-            btnAdd=true;
-            btnEdit=false;
-            msg.MsgCreado();
-        } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        }
-        }else{
+            try {
+                this.getFl().create(this.getSelectedPaso());
+                selectedPaso = new Paso();
+                btnAdd = true;
+                btnEdit = false;
+                msg.MsgCreado();
+            } catch (Exception e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+            }
+        } else {
             msg.MsgIncompleto();
         }
     }
@@ -177,16 +173,16 @@ public class mbPaso implements Serializable {
         try {
             this.getFl().remove(this.getSelectedPaso());
             selectedPaso = new Paso();
-            btnAdd=true;
-            btnEdit=false;
+            btnAdd = true;
+            btnEdit = false;
             msg.MsgBorrado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        }        
+        }
     }
 
     public void edit(Paso t) {
-        this.setC(t);        
+        this.setC(t);
     }
 
     public void edit() {
@@ -194,8 +190,8 @@ public class mbPaso implements Serializable {
             this.getFl().edit(this.getSelectedPaso());
             selectedPaso = new Paso();
             this.setC(selectedPaso);
-            btnAdd=true;
-            btnEdit=false;
+            btnAdd = true;
+            btnEdit = false;
             msg.MsgModificado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
@@ -242,7 +238,6 @@ public class mbPaso implements Serializable {
         this.setBtnEdit(false);
         this.setShowDetail(true);
     }
-    
 
     public boolean isShowDetail() {
         return showDetail;
