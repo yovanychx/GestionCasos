@@ -8,8 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
 import org.primefaces.model.SortOrder;
@@ -22,11 +20,10 @@ import org.primefaces.model.LazyDataModel;
 /**
  *
  * @author wxlter97
- * 
+ *
  * Gestion de Casos, Administracion Academica
- * 
+ *
  */
-
 @Named(value = "mbRequisito")
 @ViewScoped
 public class mbRequisito implements Serializable {
@@ -43,7 +40,7 @@ public class mbRequisito implements Serializable {
 
     @PostConstruct
     private void init() {
-this.setSelectedRequisito(new Requisito());
+        this.setSelectedRequisito(new Requisito());
         try {
             this.setLdm(new LazyDataModel<Requisito>() {
                 @Override
@@ -89,36 +86,33 @@ this.setSelectedRequisito(new Requisito());
                     }
                     salida = null;
                     try {
-                        if (!filters.isEmpty() && (filters.containsKey("idRequisito")||filters.containsKey("nombre")||filters.containsKey("descripcion")||filters.containsKey("prioridad")||filters.containsKey("idTipoRequisito.idTipoRequisito"))) {
-                            
-                            
-                            
-                            if(filters.containsKey("idRequisito")){
+                        if (!filters.isEmpty() && (filters.containsKey("idRequisito") || filters.containsKey("nombre") || filters.containsKey("descripcion") || filters.containsKey("prioridad") || filters.containsKey("idTipoRequisito.idTipoRequisito"))) {
+
+                            if (filters.containsKey("idRequisito")) {
                                 salida = fl.findBy("idRequisito", filters.get("idRequisito").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                            } else if(filters.containsKey("nombre")){
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+                            } else if (filters.containsKey("nombre")) {
                                 salida = fl.findBy("nombre", filters.get("nombre").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                            } else if(filters.containsKey("descripcion")){
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+                            } else if (filters.containsKey("descripcion")) {
                                 salida = fl.findBy("descripcion", filters.get("descripcion").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                            } else if(filters.containsKey("prioridad")){
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+                            } else if (filters.containsKey("prioridad")) {
                                 salida = fl.findBy("prioridad", filters.get("prioridad").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                            }
-                            else if(filters.containsKey("idTipoRequisito.idTipoRequisito")){
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+                            } else if (filters.containsKey("idTipoRequisito.idTipoRequisito")) {
                                 salida = fl.findByJoined("idTipoRequisito", (TipoRequisito) filters.get("idTipoRequisito.idTipoRequisito"));
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
                             }
                         }
                     } catch (Exception ex) {
@@ -165,16 +159,16 @@ this.setSelectedRequisito(new Requisito());
 
     public void create() {
         if (this.selectedRequisito.getNombre().isEmpty() != true && this.getSelectedRequisito().getDescripcion().isEmpty() != true && this.getSelectedRequisito().getPrioridad().isEmpty() != true) {
-        try {
-            this.getFl().create(this.getSelectedRequisito());
-            selectedRequisito= new Requisito();
-            btnAdd=true;
-            btnEdit=false;
-            msg.MsgCreado();
-        } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        } 
-        }else{
+            try {
+                this.getFl().create(this.getSelectedRequisito());
+                selectedRequisito = new Requisito();
+                btnAdd = true;
+                btnEdit = false;
+                msg.MsgCreado();
+            } catch (Exception e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+            }
+        } else {
             msg.MsgIncompleto();
         }
     }
@@ -182,13 +176,13 @@ this.setSelectedRequisito(new Requisito());
     public void remove() {
         try {
             this.getFl().remove(this.getSelectedRequisito());
-            selectedRequisito= new Requisito();
-            btnAdd=true;
-            btnEdit=false;
+            selectedRequisito = new Requisito();
+            btnAdd = true;
+            btnEdit = false;
             msg.MsgBorrado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        }         
+        }
     }
 
     public void edit(Requisito t) {
@@ -198,13 +192,13 @@ this.setSelectedRequisito(new Requisito());
     public void edit() {
         try {
             this.getFl().edit(this.getSelectedRequisito());
-            selectedRequisito= new Requisito();
-            btnAdd=true;
-            btnEdit=false;
+            selectedRequisito = new Requisito();
+            btnAdd = true;
+            btnEdit = false;
             msg.MsgModificado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        } 
+        }
     }
 
     public void empty() {
@@ -248,8 +242,6 @@ this.setSelectedRequisito(new Requisito());
         this.setBtnEdit(false);
         this.setShowDetail(true);
     }
-
-    
 
     public boolean isShowDetail() {
         return showDetail;

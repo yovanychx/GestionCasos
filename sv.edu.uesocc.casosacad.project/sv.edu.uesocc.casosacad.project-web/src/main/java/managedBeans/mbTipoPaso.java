@@ -8,8 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
 import org.primefaces.model.LazyDataModel;
@@ -17,14 +15,14 @@ import org.primefaces.model.SortOrder;
 import org.primefaces.event.SelectEvent;
 import sv.edu.uesocc.casosacad.data.library.TipoPaso;
 import sv.edu.uesocc.casosacad.pojos.TipoPasoFacadeLocal;
+
 /**
  *
  * @author wxlter97
- * 
+ *
  * Gestion de Casos, Administracion Academica
- * 
+ *
  */
-
 @Named(value = "mbTipoPaso")
 @ViewScoped
 public class mbTipoPaso implements Serializable {
@@ -41,7 +39,7 @@ public class mbTipoPaso implements Serializable {
 
     @PostConstruct
     private void init() {
-    selectedTipoPaso = new TipoPaso();
+        selectedTipoPaso = new TipoPaso();
         try {
             this.setLdm(new LazyDataModel<TipoPaso>() {
                 @Override
@@ -87,31 +85,31 @@ public class mbTipoPaso implements Serializable {
                     }
                     salida = null;
                     try {
-                        if (!filters.isEmpty() && (filters.containsKey("idTipoPaso")||filters.containsKey("nombre")||filters.containsKey("descripcion")||filters.containsKey("activo"))) {
-                            
-                            if(filters.containsKey("idTipoPaso")){
+                        if (!filters.isEmpty() && (filters.containsKey("idTipoPaso") || filters.containsKey("nombre") || filters.containsKey("descripcion") || filters.containsKey("activo"))) {
+
+                            if (filters.containsKey("idTipoPaso")) {
                                 salida = fl.findBy("idTipoPaso", filters.get("idTipoPaso").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                            } else if(filters.containsKey("nombre")){
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+                            } else if (filters.containsKey("nombre")) {
                                 salida = fl.findBy("nombre", filters.get("nombre").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                            } else if(filters.containsKey("descripcion")){
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+                            } else if (filters.containsKey("descripcion")) {
                                 salida = fl.findBy("descripcion", filters.get("descripcion").toString());
-                            if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                            } else if(filters.containsKey("activo")){
-                               
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+                            } else if (filters.containsKey("activo")) {
+
                                 salida = fl.findBy("activo", filters.get("activo").toString());
-                               
-                                 if (ldm != null) {
-                                ldm.setRowCount(salida.size());
-                            }
-                           
+
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
+
                             }
                         }
                     } catch (Exception ex) {
@@ -153,18 +151,18 @@ public class mbTipoPaso implements Serializable {
     public void create() {
         if (this.getSelectedTipoPaso().getNombre().isEmpty() != true && this.getSelectedTipoPaso().getDescripcion().isEmpty() != true) {
             try {
-            this.getFl().create(this.getSelectedTipoPaso());            
-            selectedTipoPaso = new TipoPaso();
-            btnAdd = true;
-            btnEdit = false;
-            msg.MsgCreado();
+                this.getFl().create(this.getSelectedTipoPaso());
+                selectedTipoPaso = new TipoPaso();
+                btnAdd = true;
+                btnEdit = false;
+                msg.MsgCreado();
             } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        }
-        }else{
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+            }
+        } else {
             msg.MsgIncompleto();
         }
-        
+
     }
 
     public void remove() {
@@ -176,7 +174,7 @@ public class mbTipoPaso implements Serializable {
             msg.MsgBorrado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        }        
+        }
     }
 
     public void edit(TipoPaso t) {
@@ -184,7 +182,7 @@ public class mbTipoPaso implements Serializable {
     }
 
     public void edit() {
-        
+
         try {
             this.getFl().edit(this.getSelectedTipoPaso());
             selectedTipoPaso = new TipoPaso();
@@ -193,7 +191,7 @@ public class mbTipoPaso implements Serializable {
             msg.MsgModificado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        } 
+        }
     }
 
     public void empty() {
