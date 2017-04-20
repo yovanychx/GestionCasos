@@ -37,22 +37,7 @@ public class mbTipoPaso implements Serializable {
     private boolean showDetail = true;
     private boolean btnAdd = true;
     private boolean btnEdit = false;
-    private String message;
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-    
-    public void saveMessage() {
-        FacesContext context = FacesContext.getCurrentInstance();         
-        context.addMessage(null, new FacesMessage(message) );
-    }
-    
-   
+    private Messages msg = new Messages();
 
     @PostConstruct
     private void init() {
@@ -168,18 +153,16 @@ public class mbTipoPaso implements Serializable {
     public void create() {
         if (this.getSelectedTipoPaso().getNombre().isEmpty() != true && this.getSelectedTipoPaso().getDescripcion().isEmpty() != true) {
             try {
-            this.getFl().create(this.getSelectedTipoPaso());
-            setMessage("Registro guardado con éxito.");
-            saveMessage();
+            this.getFl().create(this.getSelectedTipoPaso());            
             selectedTipoPaso = new TipoPaso();
             btnAdd = true;
             btnEdit = false;
+            msg.MsgCreado();
             } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }
         }else{
-            setMessage("Existen campos vacios.");
-            saveMessage();
+            msg.MsgIncompleto();
         }
         
     }
@@ -190,8 +173,7 @@ public class mbTipoPaso implements Serializable {
             selectedTipoPaso = new TipoPaso();
             btnAdd = true;
             btnEdit = false;
-            setMessage("Registro eliminado con éxito.");
-            saveMessage();
+            msg.MsgBorrado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }        
@@ -208,8 +190,7 @@ public class mbTipoPaso implements Serializable {
             selectedTipoPaso = new TipoPaso();
             btnAdd = true;
             btnEdit = false;
-            setMessage("Registro modificado con éxito.");
-            saveMessage();
+            msg.MsgModificado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         } 

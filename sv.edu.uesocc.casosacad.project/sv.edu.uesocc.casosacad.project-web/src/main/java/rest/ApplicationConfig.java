@@ -17,11 +17,15 @@ public class ApplicationConfig extends Application{
 //                addRestResourceClasses(resources);
         resources.add(TipoRequisitoRest.class);
         resources.add(TipoPasoRest.class);
+        resources.add(RequisitoRest.class);
+        resources.add(PasoRest.class);
         return resources;
     }
     
     
      private void addRestResourceClasses(Set<Class<?>> resources){
+        resources.add(rest.PasoRest.class);
+        resources.add(rest.RequisitoRest.class);
         resources.add(rest.TipoPasoRest.class);
         resources.add(rest.TipoRequisitoRest.class);
     }

@@ -8,7 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import sv.edu.uesocc.casosacad.data.library.CasoDetalle;
 import sv.edu.uesocc.casosacad.data.library.DbCdra;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-04-17T10:42:50")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-04-18T23:46:55")
 @StaticMetamodel(CasoDetalleRequisito.class)
 public class CasoDetalleRequisito_ { 
 

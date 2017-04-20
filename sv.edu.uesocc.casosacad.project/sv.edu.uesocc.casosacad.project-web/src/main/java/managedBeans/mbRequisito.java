@@ -39,21 +39,7 @@ public class mbRequisito implements Serializable {
     private boolean showDetail = true;
     private boolean btnAdd = true;
     private boolean btnEdit = false;
-    private String message;
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-    
-    public void saveMessage() {
-        FacesContext context = FacesContext.getCurrentInstance();         
-        context.addMessage(null, new FacesMessage(message) );
-    }
-   
+    private Messages msg = new Messages();
 
     @PostConstruct
     private void init() {
@@ -184,14 +170,12 @@ this.setSelectedRequisito(new Requisito());
             selectedRequisito= new Requisito();
             btnAdd=true;
             btnEdit=false;
-            setMessage("Registro guardado con éxito.");
-            saveMessage();
+            msg.MsgCreado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         } 
         }else{
-            setMessage("Existen campos vacios.");
-            saveMessage();   
+            msg.MsgIncompleto();
         }
     }
 
@@ -201,8 +185,7 @@ this.setSelectedRequisito(new Requisito());
             selectedRequisito= new Requisito();
             btnAdd=true;
             btnEdit=false;
-            setMessage("Registro eliminado con éxito.");
-            saveMessage();
+            msg.MsgBorrado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         }         
@@ -218,8 +201,7 @@ this.setSelectedRequisito(new Requisito());
             selectedRequisito= new Requisito();
             btnAdd=true;
             btnEdit=false;
-            setMessage("Registro modificado con éxito.");
-            saveMessage();
+            msg.MsgModificado();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
         } 

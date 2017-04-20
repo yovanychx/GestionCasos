@@ -18,81 +18,53 @@
 
     <h:body>
 
-        <p:layout fullPage="true" >
+        <div id="top">
+            <header id="main-header">
+                <img class="icon" src="./resources/img/ues.png" width="50" height="60"/>
+                <a id="logo-header" href="index.jsf">
+                    <span class="site-name">Gestión de Casos</span>
+                    <span class="site-desc">Administración Académica, UES FMOcc</span>
+                </a> 
 
-            <p:layoutUnit position="center">
+                <nav>
+                    <ul>
+                        <li><a><p:link outcome="paso" value="Paso"></p:link></a></li>
+                        <li><a><p:link outcome="requisito" value="Requisito"></p:link></a></li>
+                        <li><a><p:link outcome="tipoPaso" value="Tipo Paso"></p:link></a></li>
+                        <li><a><p:link outcome="tipoRequisito" value="Tipo Requisito"></p:link></a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
 
-                <div id="top">
+        <div id="content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
 
-                    <header id="main-header">
+        <div class="footer-distributed">
+            <div class="footer-left">
+                <h3>UES<span>FMOcc</span></h3>
 
-                        <a id="logo-header" href="index.jsf">
+                <p class="footer-company-name">Universidad de El Salvador, FMOcc &copy; 2017</p>
 
-                            <span class="site-name">Gestion de Casos</span>
+            </div>
 
-                            <span class="site-desc">Administración Académica, UES FMOcc</span>
+            <div class="footer-center">
 
-                        </a> 
-
-                        <nav>
-
-                            <ul>
-                                <li><a><p:link outcome="paso" value="Paso"></p:link></a></li>
-                                <li><a><p:link outcome="requisito" value="Requisito"></p:link></a></li>
-                                <li><a><p:link outcome="tipoPaso" value="Tipo Paso"></p:link></a></li>
-                                <li><a><p:link outcome="tipoRequisito" value="Tipo Requisito"></p:link></a></li>
-                            </ul>
-                        </nav>
-
-                    </header>
-
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span>Final Av. Fray Felipe de Jesús Moraga Sur</span> Sta. Ana, El Salvador</p>
                 </div>
 
+            </div>
 
+            <div class="footer-right">
 
-
-
-                <div id="content">
-
-                    <ui:insert name="content">Content</ui:insert>
-
-                </div>
-
-            </p:layoutUnit>
-
-            <!--<p:layoutUnit position="south" >
-
-                <div class="footer-distributed">
-
-                    <div class="footer-left">
-
-                        <h3>UES<span>FMOcc</span></h3>
-
-                        <p class="footer-company-name">Universidad de El Salvador, FMOcc &copy; 2017</p>
-
-                    </div>
-
-                    <div class="footer-center">
-
-                        <div>
-                            <i class="fa fa-map-marker"></i>
-                            <p><span>Final Av. Fray Felipe de Jesús Moraga Sur</span> Sta. Ana, El Salvador</p>
-                        </div>
-
-                    </div>
-
-                    <div class="footer-right">
-
-                        <p class="footer-company-about">
-                            <span>Administración Académica</span>
-                        </p>
-                    </div>
-                </div>
-
-            </p:layoutUnit>-->
-
-        </p:layout>
-
+                <p class="footer-company-about">
+                    <span>Administración Académica</span>
+                </p>
+            </div>
+        </div>
     </h:body>
 
 </html>

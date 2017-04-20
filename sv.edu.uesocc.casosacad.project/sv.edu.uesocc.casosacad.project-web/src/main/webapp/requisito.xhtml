@@ -13,8 +13,9 @@
         <ui:define name="content">
 
             <f:view>   
-                <h:form id="frmData">
-                    <p:growl id="growl" showDetail="true" sticky="false"/>
+                <h:form id="frmData" styleClass="centrartabla">
+                    <h2 align="center">REQUISITO</h2>
+                    <p:growl id="growl" sticky="false"/>
                     <p:dataTable value="#{mbRequisito.ldm}"
                                  class="tabla"
                                  lazy="true"
@@ -31,9 +32,6 @@
 
                         <p:ajax update=":frmEdit" event="rowSelect" listener="#{mbRequisito.changeSelected}"/>
 
-                        <f:facet name="header">
-                            <h3>Requisito</h3>
-                        </f:facet> 
                         <p:column filterBy="#{item.idRequisito}" headerText="ID" sortBy="#{item.idRequisito}">
 
                             <h:outputText value="#{item.idRequisito}"/>
@@ -46,7 +44,7 @@
 
                         </p:column>
 
-                        <p:column filterBy="#{item.descripcion}" headerText="DESCRIPCION" sortBy="#{item.descripcion}">
+                        <p:column filterBy="#{item.descripcion}" headerText="DESCRIPCIÓN" sortBy="#{item.descripcion}">
 
                             <h:outputText value="#{item.descripcion}"/>
 
@@ -83,7 +81,7 @@
                 </h:form>
             </f:view>            
             <f:view>            
-                <h:form id="frmEdit" class="centrarpanel">
+                <h:form id="frmEdit" styleClass="centrarpanel">
 
                     <p:fieldset  toggleable="true" widgetVar="fsEdit">
                         <f:facet name="legend">
@@ -91,16 +89,17 @@
 
 
                         </f:facet>
-                        <p:commandButton value="NUEVO" action="PF('fsEdit').toggle()">
+                        <p:commandButton value="CREAR NUEVO" action="PF('fsEdit').toggle()">
 
                             <p:ajax process="@this" update=":frmEdit :frmEdit:pnlEdit" listener="#{mbRequisito.nuevo()}"/>
 
                         </p:commandButton>
                         <br/>
-                        <p:panelGrid id="pnlEdit" columns="2" rendered="#{mbRequisito.showDetail}">
+                        <p:messages/>
+                        <p:panelGrid id="pnlEdit" columns="2" rendered="#{mbRequisito.showDetail}" styleClass="panelNoBorder">
                             <p:outputLabel value="Nombre:" for="nombre" />
                             <p:inputText id="nombre" value="#{mbRequisito.selectedRequisito.nombre}" title="Nombre"/>
-                            <p:outputLabel value="Descripcion:" for="descripcion" />
+                            <p:outputLabel value="Descripción:" for="descripcion" />
                             <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{mbRequisito.selectedRequisito.descripcion}" title="Descripcion" />
                             <p:outputLabel value="Prioridad:" for="prioridad" />
                             <p:inputText id="prioridad" value="#{mbRequisito.selectedRequisito.prioridad}" title="Prioridad"/>

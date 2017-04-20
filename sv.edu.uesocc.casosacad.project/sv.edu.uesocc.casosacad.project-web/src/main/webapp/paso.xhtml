@@ -10,8 +10,9 @@
     <ui:composition template="templates/main.xhtml">
         <ui:define name="content">
             <f:view>   
-                <h:form id="frmData">
-                    <p:growl id="growl" showDetail="true" sticky="false"/>
+                <h:form id="frmData" styleClass="centrartabla">
+                    <h2 align="center">PASO</h2>
+                    <p:growl id="growl" sticky="false"/>
                     <p:dataTable value="#{mbPaso.ldm}"
                                  class="tabla"
                                  lazy="true"
@@ -25,13 +26,10 @@
                                  widgetVar="dataTable"
                                  >
                         <p:ajax update=":frmEdit" event="rowSelect" listener="#{mbPaso.changeSelected}"/>
-                        <f:facet name="header">
-                            <h3>Paso</h3>
-                        </f:facet> 
                         <p:column filterBy="#{item.idPaso}" headerText="ID" sortBy="#{item.idPaso}">
                             <h:outputText value="#{item.idPaso}"/>
                         </p:column>
-                        <p:column filterBy="#{item.descripcion}" headerText="DESCRIPCION" sortBy="#{item.descripcion}">
+                        <p:column filterBy="#{item.descripcion}" headerText="DESCRIPCIÓN" sortBy="#{item.descripcion}">
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
                         <p:column filterBy="#{item.descripcion}" headerText="TIEMPO" sortBy="#{item.tiempo}">
@@ -55,7 +53,7 @@
                 </h:form>
             </f:view>
             <f:view>
-                <h:form id="frmEdit" class="centrarpanel">
+                <h:form id="frmEdit" styleClass="centrarpanel">
 
                     <p:fieldset  toggleable="true" widgetVar="fsEdit">
                         <f:facet name="legend">
@@ -63,23 +61,24 @@
 
 
                         </f:facet>
-                        <p:commandButton value="NUEVO" action="PF('fsEdit').toggle()">
+                        <p:commandButton value="CREAR NUEVO" action="PF('fsEdit').toggle()">
 
                             <p:ajax process="@this" update=":frmEdit :frmEdit:pnlEdit" listener="#{mbPaso.nuevo()}"/>
 
                         </p:commandButton>
                         <br/>
-                    <p:panelGrid id="pnlEdit" columns="2" rendered="#{mbPaso.showDetail}">
-                        <p:outputLabel value="Descripcion:" for="descripcion" />
-                        <p:inputText id="descripcion" value="#{mbPaso.selectedPaso.descripcion}" title="Descripcion"/>
-                        <p:outputLabel value="Tiempo:" for="tiempo" />
-                        <p:inputTextarea rows="4" cols="30" id="tiempo" value="#{mbPaso.selectedPaso.tiempo}" title="Tiempo"/>
-                        <p:outputLabel value="Tipo Paso:" for="idTipoPaso" />
-                        <p:selectOneMenu id="idTipoPaso" value="#{mbPaso.selectedPaso.idTipoPaso}" effect="fold" converter="omnifaces.SelectItemsConverter">
-                            <f:selectItems  value="#{mbTipoPaso.findAll()}" var="id" itemLabel="#{id.descripcion}" itemValue="#{id}"/>
-                        </p:selectOneMenu>
-                    </p:panelGrid>
-                    <btn:pnlBtn id="pnlBtn" name="Paso" bean="#{mbPaso}"/>
+                        <p:messages/>
+                        <p:panelGrid id="pnlEdit" columns="2" rendered="#{mbPaso.showDetail}" styleClass="panelNoBorder">
+                            <p:outputLabel value="Descripción:" for="descripcion" />
+                            <p:inputText id="descripcion" value="#{mbPaso.selectedPaso.descripcion}" title="Descripcion"/>
+                            <p:outputLabel value="Tiempo:" for="tiempo" />
+                            <p:inputTextarea rows="4" cols="30" id="tiempo" value="#{mbPaso.selectedPaso.tiempo}" title="Tiempo"/>
+                            <p:outputLabel value="Tipo Paso:" for="idTipoPaso" />
+                            <p:selectOneMenu id="idTipoPaso" value="#{mbPaso.selectedPaso.idTipoPaso}" effect="fold" converter="omnifaces.SelectItemsConverter">
+                                <f:selectItems  value="#{mbTipoPaso.findAll()}" var="id" itemLabel="#{id.nombre}" itemValue="#{id}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <btn:pnlBtn id="pnlBtn" name="Paso" bean="#{mbPaso}"/>
                     </p:fieldset>
                 </h:form>
 

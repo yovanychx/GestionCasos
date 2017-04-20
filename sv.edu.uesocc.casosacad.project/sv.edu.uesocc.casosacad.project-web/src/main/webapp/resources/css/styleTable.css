@@ -5,72 +5,105 @@
 */
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
 
-h1{
-    color: #000000;
+
+.panelNoBorder, .panelNoBorder tr, .panelNoBorder td{
+    border: hidden;
+    border-color: white;
+}
+
+.ui-growl-image-info{
+    color: #ff0000;
     
 }
-.logoUES{
- margin-left: 40%;
- margin-right: 25%;
- margin-top: 8%; 
- box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+
+.centrartabla{
+    font-family: 'Open Sans Condensed', arial, sans;
+    min-width: 410px;
+    padding: 30px;
+    background: #FFFFFF;
+    margin-bottom: 50px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
     -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
     -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
 }
- 
-.cerrar{
-    position: absolute; top: 7px; right: 7px;
+
+.centrarpanel{
+    font-family: 'Open Sans Condensed', arial, sans;
+    width: 410px;
+    padding: 30px;
+    background: #FFFFFF;
+    margin: 50px auto;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+}
+
+h1{
+    color: #000000;
+
+}
+.logoUES{
+    margin-left: 40%;
+    margin-right: 25%;
+    margin-top: 8%; 
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
 }
 
 body {
-
-    background-color: #C1C3D1;
-  font-family: "Roboto", helvetica, arial, sans-serif;
-  font-size: 12px;
-  font-weight: 400;  
+    background-color: whitesmoke;
+    font-family: "Roboto", helvetica, arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;  
 }
-
-
 
 #main-header {
     background: #333;
     color: white;
-    height: 80px;
+    height: 100px;
     width: 100%;
+    min-width: 470px;
     left: 0;
     top: 0;
-   
+
 }   
 #main-header a {
     color: white;
 }
-    
-    
+
+
 /*
  * Logo
  */
 #logo-header {
-    float: left;
+    float:left;
     padding: 15px 0 0 20px;
     text-decoration: none;
 }
-    #logo-header:hover {
-        color: #ff0000;
-    }
-    
-    #logo-header .site-name {
-        display: block;
-        font-weight: 700;
-        font-size: 1.2em;
-    }
-    
-    #logo-header .site-desc {
-        display: block;
-        font-weight: 300;
-        font-size: 0.8em;
-        color: #999;
-    }
-    
+
+.icon{
+    float: left;
+    padding: 15px 0 0 20px;
+}
+
+#logo-header:hover {
+    color: #ff0000;
+}
+
+#logo-header .site-name {
+    display: block;
+    font-weight: 700;
+    font-size: 1.7em;
+}
+
+#logo-header .site-desc {
+    display: block;
+    font-weight: 300;
+    font-size: 1.0em;
+    color: #999;
+}
+
 
 /*
  * Navegación
@@ -84,37 +117,22 @@ nav ul {
     list-style: none;
     padding-right: 20px;
 }
-    
+
 nav ul li {
     display: inline-block;
     line-height: 80px;
 }
-            
+
 nav ul li a {
     display: block;
-    padding: 0 10px;
+    padding: 0 5px;
     text-decoration: none;
 }
-            
+
 nav ul li a:hover {
     background: #ff0000;
 }
 
-.tabla{
-    position: relative;
-    
-}
-
-.frmData{
-    height: 300px;
-    position: relative;
-}
-
-.centrarpanel{
-    
-    margin: auto;
-    
-}
 .form-style-8{
     font-family: 'Open Sans Condensed', arial, sans;
     width: 510px;
@@ -124,12 +142,11 @@ nav ul li a:hover {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
     -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
     -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
-
 }
 
 .pnlBotones{
     background-color: #FFFFFF;
-    
+
 }
 
 .form-style-8 h2{
@@ -159,7 +176,7 @@ nav ul li a:hover {
     margin-bottom: 2px;
     font: 16px Arial, Helvetica, sans-serif;
     height: 45px;
-    
+
 }
 .form-style-8 textarea{
     resize: vertical;
@@ -184,6 +201,6 @@ nav ul li a:hover {
 .form-style-8 input[type="button"]:hover, 
 .form-style-8 input[type="submit"]:hover {
     background:linear-gradient(to bottom, #ff0000 50%, #990000 100%);
- 
+
     background-color:#ff0000;
 }

@@ -12,8 +12,9 @@
 
         <ui:define name="content">
             <f:view>   
-                <h:form id="frmData">
-                    <p:growl id="growl" showDetail="true" sticky="false"/>
+                <h:form id="frmData" styleClass="centrartabla">
+                    <h2 align="center">TIPO DE REQUISITO</h2>
+                    <p:growl id="growl" sticky="false"/>
                     <p:dataTable value="#{mbTipoRequisito.ldm}"
                                  class="tabla"
                                  lazy="true"
@@ -29,9 +30,6 @@
 
 
                         <p:ajax update=":frmEdit" event="rowSelect" listener="#{mbTipoRequisito.changeSelected}"/>
-                        <f:facet name="header">
-                            <h3>Tipo Requisito</h3>
-                        </f:facet> 
                         <p:column filterBy="#{item.idTipoRequisito}" headerText="ID" sortBy="#{item.idTipoRequisito}">
 
                             <h:outputText value="#{item.idTipoRequisito}"/>
@@ -62,12 +60,12 @@
                         </p:column>
 
                     </p:dataTable>              
-                    </h:form>
+                </h:form>
             </f:view>
 
 
             <f:view>
-                <h:form id="frmEdit" class="centrarpanel" styleClass="form-style-8">
+                <h:form id="frmEdit" styleClass="centrarpanel" >
 
                     <p:fieldset  toggleable="true" widgetVar="fsEdit">
                         <f:facet name="legend">
@@ -75,13 +73,14 @@
 
 
                         </f:facet>
-                        <p:commandButton value="NUEVO" action="PF('fsEdit').toggle()">
+                        <p:commandButton value="CREAR NUEVO" action="PF('fsEdit').toggle()">
 
                             <p:ajax process="@this" update=":frmEdit :frmEdit:pnlEdit" listener="#{mbTipoRequisito.nuevo()}"/>
 
                         </p:commandButton>
                         <br/>
-                        <p:panelGrid id="pnlEdit" columns="2" rendered="#{mbTipoRequisito.showDetail}" >
+                        <p:messages escape="true"/>
+                        <p:panelGrid id="pnlEdit" columns="2" rendered="#{mbTipoRequisito.showDetail}" styleClass="panelNoBorder">
                             <p:outputLabel value="Nombre:" for="nombre" />
                             <p:inputText id="nombre" value="#{mbTipoRequisito.selectedTipoRequisito.nombre}" title="Nombre"/>
                             <p:outputLabel value="Observaciones:" for="observaciones" />

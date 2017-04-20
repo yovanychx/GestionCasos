@@ -14,7 +14,7 @@
     <!-- IMPLEMENTATION -->
     <cc:implementation>
         <h:panelGrid id="pnlBtn" columns="3" rendered="#{cc.attrs.bean.showDetail}">
-            <p:commandButton value="Nuevo #{cc.attrs.name}" rendered="#{cc.attrs.bean.btnAdd}">
+            <p:commandButton value="Guardar nuevo #{cc.attrs.name}" rendered="#{cc.attrs.bean.btnAdd}">
                 <p:ajax process=":frmEdit" update=":frmData :frmEdit" listener="#{cc.attrs.bean.create()}"/>
             </p:commandButton>
             <p:commandButton value="Editar" rendered="#{cc.attrs.bean.btnEdit}">
