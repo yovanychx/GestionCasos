@@ -61,9 +61,30 @@
                             <h:outputText value="Panel de Edición"/>
 
                         </f:facet>
+                        <p:fieldset  toggleable="true" widgetVar="fsEditTR">
+                        <f:facet name="legend">
+                            <h:outputText value="Agregar Tipo Requisito"/>
+
+                        </f:facet>
+                        <p:commandButton value="CREAR NUEVO" action="PF('fsEditTR').toggle()">
+                            <p:ajax process="@this" update=":frmEdit :frmEdit:pnlEditTR" listener="#{mbTipoPaso.nuevo()}"/>
+                        </p:commandButton>
+                        <br/>
+                        <p:messages/>
+                        <p:panelGrid id="pnlEditTR" columns="2" rendered="#{mbPaso.showDetail}" styleClass="panelNoBorder">
+                            <p:outputLabel value="Nombre:" for="nombre" />
+                            <p:inputText id="nombre2" title="Nombre"/>
+                            <p:outputLabel value="Activo:" for="activo" />
+                            <p:selectBooleanButton id="activo" offLabel="INACTIVO" onLabel="ACTIVO"/>
+                            <p:outputLabel value="Descripción:" for="descripcion" />
+                            <p:inputTextarea rows="4" cols="30" id="descripcion2" title="Descripcion"/>
+                        </p:panelGrid>
+                        <btn:pnlBtn id="pnlBtn2" name="Tipo Paso" bean="#{mbTipoPaso}"/>
+                    </p:fieldset>
                         <p:commandButton value="CREAR NUEVO" action="PF('fsEdit').toggle()">
                             <p:ajax process="@this" update=":frmEdit :frmEdit:pnlEdit" listener="#{mbPaso.nuevo()}"/>
                         </p:commandButton>
+                        
                         <br/>
                         <p:messages/>
                         <p:panelGrid id="pnlEdit" columns="2" rendered="#{mbPaso.showDetail}" styleClass="panelNoBorder">
@@ -80,6 +101,7 @@
                         </p:panelGrid>
                         <btn:pnlBtn id="pnlBtn" name="Paso" bean="#{mbPaso}"/>
                     </p:fieldset>
+                    
                 </h:form>
 
             </f:view>
