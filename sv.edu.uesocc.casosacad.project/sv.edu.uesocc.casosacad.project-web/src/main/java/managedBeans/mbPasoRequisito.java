@@ -8,8 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
 import org.primefaces.model.SortOrder;
@@ -21,11 +19,10 @@ import sv.edu.uesocc.casosacad.pojos.PasoRequisitoFacadeLocal;
 /**
  *
  * @author wxlter97
- * 
+ *
  * Gestion de Casos, Administracion Academica
- * 
+ *
  */
-
 @Named(value = "mbPasoRequisito")
 @ViewScoped
 public class mbPasoRequisito implements Serializable {
@@ -35,16 +32,13 @@ public class mbPasoRequisito implements Serializable {
     private LazyDataModel<PasoRequisito> ldm;
     private PasoRequisito c = new PasoRequisito();
     private PasoRequisito selectedPasoRequisito;
-    private String mensaje;
     private boolean showDetail = false;
     private boolean btnAdd = false;
     private boolean btnEdit = false;
-    
-   
 
     @PostConstruct
     private void init() {
-this.setSelectedPasoRequisito(new PasoRequisito());
+        this.setSelectedPasoRequisito(new PasoRequisito());
         try {
             this.setLdm(new LazyDataModel<PasoRequisito>() {
                 @Override
@@ -76,19 +70,18 @@ this.setSelectedPasoRequisito(new PasoRequisito());
                 public List<PasoRequisito> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
                     List<PasoRequisito> salida = new ArrayList();
 
-                    
-                        try {
-                            if (fl != null) {
-                                this.setRowCount(getFl().count());
-                                salida = getFl().findRange(first, pageSize);
-                            }
-
-                        } catch (Exception e) {
-                            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+                    try {
+                        if (fl != null) {
+                            this.setRowCount(getFl().count());
+                            salida = getFl().findRange(first, pageSize);
                         }
-                        return salida;
+
+                    } catch (Exception e) {
+                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
                     }
-                    
+                    return salida;
+                }
+
             });
 
         } catch (Exception e) {
@@ -175,8 +168,6 @@ this.setSelectedPasoRequisito(new PasoRequisito());
         this.setShowDetail(true);
     }
 
-    
-
     public boolean isShowDetail() {
         return showDetail;
     }
@@ -200,18 +191,4 @@ this.setSelectedPasoRequisito(new PasoRequisito());
     public void setBtnEdit(boolean btnEdit) {
         this.btnEdit = btnEdit;
     }
-
-
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-
-    public void sendMessage() {
-        FacesContext context = FacesContext.getCurrentInstance();         
-        context.addMessage(null, new FacesMessage(this.getMensaje()) );
-}
 }

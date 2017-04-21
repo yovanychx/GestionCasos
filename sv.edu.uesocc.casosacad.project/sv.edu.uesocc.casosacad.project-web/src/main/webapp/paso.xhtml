@@ -29,6 +29,9 @@
                         <p:column filterBy="#{item.idPaso}" headerText="ID" sortBy="#{item.idPaso}">
                             <h:outputText value="#{item.idPaso}"/>
                         </p:column>
+                        <p:column filterBy="#{item.nombre}" headerText="Nombre" sortBy="#{item.nombre}">
+                            <h:outputText value="#{item.nombre}"/>
+                        </p:column>
                         <p:column filterBy="#{item.descripcion}" headerText="DESCRIPCIÓN" sortBy="#{item.descripcion}">
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
@@ -54,11 +57,9 @@
             </f:view>
             <f:view>
                 <h:form id="frmEdit" styleClass="centrarpanel">
-
                     <p:fieldset  toggleable="true" widgetVar="fsEdit">
                         <f:facet name="legend">
                             <h:outputText value="Panel de Edición"/>
-
 
                         </f:facet>
                         <p:commandButton value="CREAR NUEVO" action="PF('fsEdit').toggle()">
@@ -67,6 +68,8 @@
                         <br/>
                         <p:messages/>
                         <p:panelGrid id="pnlEdit" columns="2" rendered="#{mbPaso.showDetail}" styleClass="panelNoBorder">
+                            <p:outputLabel value="Nombre:" for="nombre" />
+                            <p:inputText id="nombre" value="#{mbPaso.selectedPaso.nombre}" title="Nombre"/>
                             <p:outputLabel value="Descripción:" for="descripcion" />
                             <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{mbPaso.selectedPaso.descripcion}" title="Descripcion"/>
                             <p:outputLabel value="Tiempo:" for="tiempo" />
