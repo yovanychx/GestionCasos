@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Paso.findAll", query = "SELECT p FROM Paso p")
     , @NamedQuery(name = "Paso.findByIdPaso", query = "SELECT p FROM Paso p WHERE p.idPaso = :idPaso")
+    , @NamedQuery(name = "Paso.findByNombre", query = "SELECT p FROM Paso p WHERE p.nombre = :nombre")
     , @NamedQuery(name = "Paso.findByTiempo", query = "SELECT p FROM Paso p WHERE p.tiempo = :tiempo")})
 public class Paso implements Serializable {
 
@@ -43,6 +44,9 @@ public class Paso implements Serializable {
     @Basic(optional = false)
     @Column(name = "idPaso", nullable = false)
     private Integer idPaso;
+    @Basic(optional = false)
+    @Column(name = "Nombre", nullable = false, length = 20)
+    private String nombre;
     @Basic(optional = false)
     @Lob
     @Column(name = "Descripcion", nullable = false, length = 65535)
@@ -144,6 +148,14 @@ public class Paso implements Serializable {
     @Override
     public String toString() {
         return "sv.edu.uesocc.casosacad.data.library.Paso[ idPaso=" + idPaso + " ]";
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
 }

@@ -154,7 +154,7 @@ public class mbPaso implements Serializable {
     }
 
     public void create() {
-        if (this.selectedPaso.getTiempo().isEmpty() != true && this.getSelectedPaso().getDescripcion().isEmpty() != true) {
+        if (this.selectedPaso.getNombre().isEmpty() != true && this.selectedPaso.getTiempo().isEmpty() != true && this.getSelectedPaso().getDescripcion().isEmpty() != true) {
             try {
                 this.getFl().create(this.getSelectedPaso());
                 selectedPaso = new Paso();
