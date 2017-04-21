@@ -86,7 +86,7 @@ public class mbPaso implements Serializable {
                     }
                     salida = null;
                     try {
-                        if (!filters.isEmpty() && (filters.containsKey("idPaso") || filters.containsKey("nombre") || filters.containsKey("descripcion") || filters.containsKey("idPaso") || filters.containsKey("idTipoPaso.idTipoPaso"))) {
+                        if (!filters.isEmpty() && (filters.containsKey("idPaso") || filters.containsKey("nombre") || filters.containsKey("descripcion") || filters.containsKey("tiempo") || filters.containsKey("idTipoPaso.idTipoPaso"))) {
                             if (filters.containsKey("idPaso")) {
                                 salida = fl.findBy("idPaso", filters.get("idPaso").toString());
                                 if (ldm != null) {
