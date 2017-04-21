@@ -98,6 +98,11 @@ public class mbPaso implements Serializable {
                                 if (ldm != null) {
                                     ldm.setRowCount(salida.size());
                                 }
+                            } else if (filters.containsKey("tiempo")) {
+                                salida = fl.findBy("tiempo", filters.get("tiempo").toString());
+                                if (ldm != null) {
+                                    ldm.setRowCount(salida.size());
+                                }
                             } else if (filters.containsKey("descripcion")) {
                                 salida = fl.findBy("descripcion", filters.get("descripcion").toString());
                                 if (ldm != null) {
