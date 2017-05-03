@@ -45,12 +45,13 @@ public class Paso implements Serializable {
     @Column(name = "idPaso", nullable = false)
     private Integer idPaso;
     @Basic(optional = false)
-    @Column(name = "Nombre", nullable = false, length = 20)
-    private String nombre;
-    @Basic(optional = false)
     @Lob
     @Column(name = "Descripcion", nullable = false, length = 65535)
     private String descripcion;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "Nombre", nullable = false, length = 50)
+    private String nombre;
     @Basic(optional = false)
     @Column(name = "Tiempo", nullable = false, length = 20)
     private String tiempo;
@@ -147,7 +148,7 @@ public class Paso implements Serializable {
 
     @Override
     public String toString() {
-        return "sv.edu.uesocc.casosacad.data.library.Paso[ idPaso=" + idPaso + " ]";
+        return String.valueOf(idPaso);
     }
 
     public String getNombre() {

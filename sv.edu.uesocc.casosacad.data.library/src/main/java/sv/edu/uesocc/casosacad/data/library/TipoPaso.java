@@ -134,7 +134,7 @@ public class TipoPaso implements Serializable {
 
     @Override
     public String toString() {
-        return "sv.edu.uesocc.casosacad.data.library.TipoPaso[ idTipoPaso=" + idTipoPaso + " ]";
+        return String.valueOf(idTipoPaso);
     }
     
 }

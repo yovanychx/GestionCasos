@@ -40,7 +40,7 @@ public class mbRequisito implements Serializable {
 
     @PostConstruct
     private void init() {
-        this.setSelectedRequisito(new Requisito());
+        selectedRequisito = new Requisito();
         try {
             this.setLdm(new LazyDataModel<Requisito>() {
                 @Override
@@ -144,9 +144,7 @@ public class mbRequisito implements Serializable {
     }
 
     public String showName(TipoRequisito t) {
-
         return t.getNombre();
-
     }
 
     public void setFl(RequisitoFacadeLocal fl) {
@@ -158,7 +156,7 @@ public class mbRequisito implements Serializable {
     }
 
     public void create() {
-        if (this.selectedRequisito.getNombre().isEmpty() != true && this.getSelectedRequisito().getDescripcion().isEmpty() != true && this.getSelectedRequisito().getPrioridad().isEmpty() != true) {
+        if (this.selectedRequisito.getNombre().isEmpty() != true && this.selectedRequisito.getDescripcion().isEmpty() != true && this.selectedRequisito.getPrioridad().isEmpty() != true) {
             try {
                 this.getFl().create(this.getSelectedRequisito());
                 selectedRequisito = new Requisito();
@@ -209,7 +207,7 @@ public class mbRequisito implements Serializable {
         return selectedRequisito;
     }
 
-    public void setSelectedRequisito(Requisito selectedRequi) {
+    public void setSelectedRequisito(Requisito selectedRequisito) {
         this.selectedRequisito = selectedRequisito;
     }
 

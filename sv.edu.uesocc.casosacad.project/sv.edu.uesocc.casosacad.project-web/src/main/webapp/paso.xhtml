@@ -64,6 +64,7 @@
                         <p:commandButton value="CREAR NUEVO" action="PF('fsEdit').toggle()">
                             <p:ajax process="@this" update=":frmEdit :frmEdit:pnlEdit" listener="#{mbPaso.nuevo()}"/>
                         </p:commandButton>
+
                         <br/>
                         <p:messages/>
                         <p:panelGrid id="pnlEdit" columns="2" rendered="#{mbPaso.showDetail}" styleClass="panelNoBorder">
@@ -80,7 +81,20 @@
                         </p:panelGrid>
                         <btn:pnlBtn id="pnlBtn" name="Paso" bean="#{mbPaso}"/>
                     </p:fieldset>
+
                 </h:form>
+                <p:tabView>
+                    <p:tab title="Tab One">
+                        <h:outputText value="Lorem" />
+                    </p:tab>
+                    <p:tab title="Tab Two">
+                        <h:outputText value="Ipsum" />
+                    </p:tab>
+                    <p:tab title="Tab Three">
+                        <h:outputText value="Dolor" />
+                    </p:tab>
+                </p:tabView>
+
 
             </f:view>
         </ui:define>
