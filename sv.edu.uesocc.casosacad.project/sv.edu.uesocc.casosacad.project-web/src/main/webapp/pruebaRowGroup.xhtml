@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:ace="http://www.icefaces.org/icefaces/components"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+        
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <h:form id="form">
+            
+            <ace:dataTable id="carTableMultiRowHeader"
+                           value="#{mbTipoRequisito.findAll()}"
+                           var="car"
+                           rows="15"
+                           scrollable="true"
+                           scrollHeight="200">
+                
+                <ace:columnGroup id="columnGroup" type="header">
+                    <ace:row>
+                        <ace:column id="vehiclesData" colspan="6" headerText="Vehicles Data"/>
+                    </ace:row>
+
+                    <ace:row>
+                        <ace:column id="headerName" headerText="Name"/>
+                        <ace:column id="headerChassis" headerText="Chassis" sortBy="#{car.nombre}" groupBy="#{car.nombre}"/>
+                        <ace:column id="vehicleParameters" colspan="2" headerText="Vehicle Parameters"/>
+                        <ace:column id="headerCost" headerText="Cost" rowspan="2"/>
+                        <ace:column id="headerExp" headerText="Exp" rowspan="2"/>
+                    </ace:row>
+                    
+                    
+                </ace:columnGroup>
+                
+                <ace:column id="name">
+                    <h:outputText id="nameCell" value="#{car.nombre}"/>
+                </ace:column>
+               <ace:column id="chassis">
+                   <h:outputText id="chassisCell" value="#{car.idTipoRequisito}"/>
+                </ace:column>
+               <ace:column id="weight">
+                   <h:outputText value="#{car.observaciones}"/>
+                </ace:column>
+               <ace:column id="acceleration">
+                   <h:outputText id="accelerationCell" value="#{car.activo}"/>
+                </ace:column>
+              <f:facet name="footer">
+                  <h:outputText value="Car data provided for you by ICEsoft"/>
+              </f:facet>
+
+            </ace:dataTable>
+        </h:form>
+        
+    </h:body>
+</html>
+

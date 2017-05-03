@@ -6,12 +6,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:btn="http://xmlns.jcp.org/jsf/composite/ezcomp">
-
+    
     <ui:composition template="templates/main.xhtml">
-
-
         <ui:define name="content">
-
             <f:view>   
                 <h:form id="frmData" styleClass="centrartabla">
                     <h2 align="center">REQUISITO</h2>
@@ -28,7 +25,6 @@
                                  paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                                  widgetVar="dataTable"
                                  >
-
 
                         <p:ajax update=":frmEdit" event="rowSelect" listener="#{mbRequisito.changeSelected}"/>
 
@@ -71,23 +67,17 @@
                                 </p:selectOneMenu>
                             </f:facet>
                             <h:outputText value="#{item.idTipoRequisito.nombre}"/>
-
                         </p:column>
-
-
                     </p:dataTable>
-
-
                 </h:form>
             </f:view>            
+            
             <f:view>            
                 <h:form id="frmEdit" styleClass="centrarpanel">
 
                     <p:fieldset  toggleable="true" widgetVar="fsEdit">
                         <f:facet name="legend">
                             <h:outputText value="Panel de Edición"/>
-
-
                         </f:facet>
                         <p:commandButton value="CREAR NUEVO" action="PF('fsEdit').toggle()">
 

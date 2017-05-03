@@ -29,6 +29,7 @@ public interface AbstractInterface<T> {
     
     public List<T> findByJoined(String parameter, Object value);
   
-    public List<T> findByMultiple(List<Object> parameters);
+    public List<T> findByMultiple(String parameter1, Object value1, String parameter2, Object value2);
     
+    public List<T> findDistinct(String parameter);
 }

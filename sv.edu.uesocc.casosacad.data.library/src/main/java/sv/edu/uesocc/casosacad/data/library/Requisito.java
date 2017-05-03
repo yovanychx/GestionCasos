@@ -147,7 +147,7 @@ public class Requisito implements Serializable {
 
     @Override
     public String toString() {
-        return  idRequisito.toString();
+        return  String.valueOf(idRequisito);
     }
     
 }

@@ -9,13 +9,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
-import sv.edu.uesocc.casosacad.data.library.TipoRequisito;
+import javax.persistence.criteria.Selection;
+
+
 
 /**
  *
@@ -90,7 +88,7 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(c);
         return q.getResultList();
     }
-    public List<T> findByMultiple(List<Object> parameters){
+    public List<T> findByMultiple(String parameter1, Object value1, String parameter2, Object value2){
 
         javax.persistence.criteria.CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         javax.persistence.criteria.CriteriaQuery<T> c = cb.createQuery(entityClass);
@@ -98,24 +96,28 @@ public abstract class AbstractFacade<T> {
         
         List<Predicate> predicates = new ArrayList<>();
         
-        for (Iterator<Object> it = parameters.iterator(); it.hasNext();) {
-          
-            Object[] param = (Object[]) it.next();
-            
-            predicates.add(cb.like(t.<String>get(param[0].toString()), param[1].toString()+"%"));
+          predicates.add(cb.equal(t.<String>get(parameter1), value1));
+          predicates.add(cb.equal(t.<String>get(parameter2), value2));
         
-        }
+        
         
         c.select(t).where(predicates.toArray(new Predicate[]{}));
-        
         javax.persistence.Query q = getEntityManager().createQuery(c);
-        
-        
-        
-        
-        
         return q.getResultList();
     }
     
+    public List<T> findDistinct(String parameter){
+       
+        javax.persistence.criteria.CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        javax.persistence.criteria.CriteriaQuery<T> c = cb.createQuery(entityClass);
+        javax.persistence.criteria.Root<T> t = c.from(entityClass);
+        c.select((Selection<? extends T>) t.get(parameter)).distinct(true);
+        
+        javax.persistence.Query q = getEntityManager().createQuery(c);
+        return q.getResultList();
+    }
+    
+   
     
 }
+

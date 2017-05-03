@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:btn="http://xmlns.jcp.org/jsf/composite/ezcomp">
+
+    <ui:composition template="templates/main.xhtml">
+
+
+        <ui:define name="content">
+
+            <f:view>   
+                <h:form id="frmData" styleClass="centrartabla">
+                    <h2 align="center">SOLICITUDES</h2>
+                    <p:growl id="growl" sticky="false"/>
+                    <p:dataTable value="#{mbSolicitudes.ldm}"
+                                 class="tabla"
+                                 lazy="true"
+                                 var="item"
+                                 paginator="true" 
+                                 rows="12" 
+                                 selectionMode="single"
+                                 selection="#{mbSolicitudes.selectedSolicitudes}"
+                                 emptyMessage="Aún no se han agregado tipo Pasos."
+                                 paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                 widgetVar="dataTable"
+                                 id="dataTable"
+                                 >
+                        <p:ajax update=":frmEdit" event="rowSelect" listener="#{mbSolicitudes.changeSelected}"/>
+
+                        <p:column filterBy="#{item.idSolicitud}" headerText="ID" sortBy="#{item.idSolicitud}">                            
+                            <h:outputText value="#{item.idSolicitud}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.carnet}" headerText="CARNET" sortBy="#{item.carnet}">
+                            <h:outputText value="#{item.carnet}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.nit}" headerText="NIT" sortBy="#{item.nit}">
+                            <h:outputText value="#{item.nit}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.fechaRecibida}" headerText="FECHA" >
+                            <f:facet name="filter">
+                                
+                            </f:facet>
+                            <!--<f:facet name="filter">
+                                <p:calendar id="cal1" pattern="yyyy-MM-dd">
+                                    <p:ajax event="dateSelect" oncomplete="PF('dataTable').filter()" update=":frmData" />
+                                    <p:ajax event="change" process="@this" oncomplete="PF('dataTable').filter" update=":frmData"/>
+                                </p:calendar>
+                            </f:facet> -->                        
+                            <h:outputText value="#{item.fechaRecibida}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column filterBy="#{item.usuario}" headerText="USUARIO" sortBy="#{item.usuario}">
+                            <h:outputText value="#{item.usuario}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.descripcionSolicitud}" headerText="DESCRIPCIÓN" sortBy="#{item.descripcionSolicitud}">
+                            <h:outputText value="#{item.descripcionSolicitud}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+            </f:view>
+            <f:view>
+                <h:form id="frmEdit" styleClass="centrarpanel">
+
+                    <p:fieldset  toggleable="true" widgetVar="fsEdit">
+                        <f:facet name="legend">
+                            <h:outputText value="Panel de Edición"/>
+                        </f:facet>
+                        <p:commandButton value="CREAR NUEVO" action="PF('fsEdit').toggle()">
+
+                            <p:ajax process="@this" update=":frmEdit :frmEdit:pnlEdit" listener="#{mbSolicitudes.nuevo()}"/>
+
+                        </p:commandButton>
+                        <br/>
+                        <p:messages/>
+                        <p:panelGrid id="pnlEdit" columns="2" styleClass="panelNoBorder">
+                            <p:outputLabel value="Carnet:" for="carnet" />
+                            <p:inputText id="carnet" value="#{mbSolicitudes.selectedSolicitudes.carnet}" title="Carnet" />
+                            <p:outputLabel value="Nit:" for="nit" />
+                            <p:inputText id="nit" value="#{mbSolicitudes.selectedSolicitudes.nit}" title="Nit"/>
+                            <p:outputLabel value="Usuario:" for="usuario" />
+                            <p:inputText id="usuario" value="#{mbSolicitudes.selectedSolicitudes.usuario}" title="Usuario"/>
+                            <p:outputLabel value="Descripcion:" for="descripcion" />
+                            <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{mbSolicitudes.selectedSolicitudes.descripcionSolicitud}" title="Descripcion"/>
+                        </p:panelGrid>
+                        <btn:pnlBtn id="pnlBtn" name="Solicitud" bean="#{mbSolicitudes}"/>
+                    </p:fieldset>
+                </h:form>
+            </f:view>
+
+
+
+
+            <!-- <f:view>
+                     <h:form id="frmEdit" style="min-width: 350px;">
+                         <br></br>
+                         <br></br>
+                         <h1>Crear y Editar </h1>
+                         <p:panelGrid id="pnlEdit" columns="2" rendered="#{mbTipoPaso.showDetail}">
+                             <p:outputLabel value="Nombre:" for="nombre" />
+                             <p:inputText id="nombre" value="#{mbTipoPaso.selectedTipoPaso.nombre}" title="Nombre"/>
+                             <p:outputLabel value="Descripcion:" for="descripcion" />
+                             <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{mbTipoPaso.selectedTipoPaso.descripcion}" title="Descripcion"/>
+                             <p:outputLabel value="ESTADO:" for="activo" />
+                             <p:selectBooleanButton id="activo" value="#{mbTipoPaso.selectedTipoPaso.activo}" offLabel="INACTIVO" onLabel="ACTIVO"/>
+                         </p:panelGrid>
+                         <btn:pnlBtn id="pnlBtn" name="Tipo Paso" bean="#{mbTipoPaso}"/>
+                         
+                     </h:form>
+                 </p:dialog>
+             </f:view>-->
+
+
+        </ui:define>
+
+
+    </ui:composition>
+
+</html>
+
