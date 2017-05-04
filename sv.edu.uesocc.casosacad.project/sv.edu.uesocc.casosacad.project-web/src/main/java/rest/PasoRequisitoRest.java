@@ -19,7 +19,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import sv.edu.uesocc.casosacad.data.library.Paso;
 import sv.edu.uesocc.casosacad.data.library.PasoRequisito;
-import sv.edu.uesocc.casosacad.data.library.TipoPaso;
 import sv.edu.uesocc.casosacad.pojos.PasoFacadeLocal;
 import sv.edu.uesocc.casosacad.pojos.PasoRequisitoFacadeLocal;
 

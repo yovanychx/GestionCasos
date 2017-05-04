@@ -15,9 +15,12 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import sv.edu.uesocc.casosacad.data.library.Proceso;
 import sv.edu.uesocc.casosacad.data.library.ProcesoDetalle;
 import sv.edu.uesocc.casosacad.pojos.ProcesoDetalleFacadeLocal;
+import sv.edu.uesocc.casosacad.pojos.ProcesoFacadeLocal;
 
 /**
  *
@@ -28,6 +31,8 @@ public class ProcesoDetalleRest implements Serializable {
 
     @EJB
     private ProcesoDetalleFacadeLocal ejbProsDet;
+    @EJB
+    private ProcesoFacadeLocal ejbProceso;
 
     @GET
     @Produces({MediaType.APPLICATION_JSON + "; charset=utf-8"})
@@ -79,5 +84,23 @@ public class ProcesoDetalleRest implements Serializable {
         }
         return new ProcesoDetalle();
 
+    }
+    
+    @GET
+    @Path("findidproceso/")
+    @Produces({MediaType.APPLICATION_JSON + "; charset=utf-8"})
+    public List<ProcesoDetalle> findProceso( 
+            @QueryParam("idproceso") int id)
+    {
+        List salida = null;
+        try {
+            if (ejbProsDet != null) {
+                return ejbProsDet.findByJoined("idProceso", (Proceso) ejbProceso.find(id));
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
+        return salida;
     }
 }
